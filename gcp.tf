@@ -1,5 +1,8 @@
+variable "gcp_project" {}
+variable "gcp_region" {}
+
 provider "google" {
   credentials = "${file("account.json")}"
-  project     = "dev-playground-1019"
-  region      = "asia-northeast-1"
+  project     = "${var.gcp_project}"
+  region      = "${var.gcp_region}"
 }
