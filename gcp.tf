@@ -3,3 +3,29 @@ provider "google" {
   project     = "dev-playground-1019"
   region      = "asia-northeast-1"
 }
+
+resource "google_compute_instance" "hello_instance" {
+  name         = "terraform-test"
+  machine_type = "g1-small"
+  zone         = "asia-northeast1-a"
+
+  tags = ["foo", "bar", "terra"]
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-8"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral IP
+    }
+  }
+
+  metadata {
+    terraform = "true"
+  }
+}
