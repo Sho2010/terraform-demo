@@ -29,3 +29,11 @@ resource "google_compute_instance" "hello_instance" {
     terraform = "true"
   }
 }
+
+output "ip" {
+  value = "${google_compute_instance.hello_instance.network_interface.0.access_config.0.assigned_nat_ip}"
+}
+
+output "instance_id" {
+  value = "${google_compute_instance.hello_instance.instance_id}"
+}
