@@ -1,3 +1,5 @@
+variable "my_name" {}
+
 provider "google" {
   credentials = "${file("account.json")}"
   project     = "dev-playground-1019"
@@ -5,7 +7,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "hello_instance" {
-  name         = "terraform-test"
+  name         = "terraform-${var.my_name}"
   machine_type = "g1-small"
   zone         = "asia-northeast1-a"
 
